@@ -24,16 +24,19 @@ public class AIController : MonoBehaviour
     public float stoppingDistance;
     public float retreatDistance;
 
-    private void Awake()
-    {
-        playerTransform = GameObject.FindWithTag("Player").transform;
-    }
+    //private void Awake()
+    //{
+    //    playerTransform = GameObject.FindWithTag("Player").transform;
+    //}
 
     private void Update()
     {
+        playerTransform = GameObject.FindWithTag("Player").transform;
+
         playerPos = playerTransform.position;
         playerPos.y = this.transform.position.y;
         transform.LookAt(playerPos);
+
 
         if (Vector3.Distance(this.transform.position, playerTransform.position) > stoppingDistance)
         {

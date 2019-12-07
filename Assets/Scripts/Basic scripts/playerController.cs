@@ -13,8 +13,10 @@ public class playerController : MonoBehaviour
     public AudioSource hurtSound;
     public Animation anim;
 
-    private void Start()
+    private void Awake()
     {
+        player = this.gameObject;
+        rb = this.GetComponent<Rigidbody>();
         Teleport tPort = gameObject.AddComponent<Teleport>() as Teleport;
         Explosion explo = gameObject.AddComponent<Explosion>() as Explosion;
         ReflectSword rSword = gameObject.AddComponent<ReflectSword>() as ReflectSword;
@@ -33,7 +35,6 @@ public class playerController : MonoBehaviour
         movement.y = 0f;
         movement = movement.normalized;
     }
-
     public void OnPlayerHit()
     {
         hurtSound.Play();
