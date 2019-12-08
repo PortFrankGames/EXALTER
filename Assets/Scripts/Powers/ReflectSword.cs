@@ -15,16 +15,22 @@ public class ReflectSword : MonoBehaviour
     public Animator anim;
     public bool preparingToStrike;
 
-    //player location variable
+    //player location variables
     public Transform playerTransform;
+
+    //values for movement bump after slashing
+    public Rigidbody playerRigidbody;
+    public float bump;
 
     private void Start()
     {
         swordHitboxOffset = 0.45f;
         reflexCooldown = reflexCooldownMax; 
         playerTransform = this.transform;
+        playerRigidbody = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         anim.ResetTrigger("SwordSwing");
+        bump = 750.0f;
     }
 
     private void Update()
@@ -51,12 +57,15 @@ public class ReflectSword : MonoBehaviour
             {
                 Debug.Log("setting trigger");
                 anim.SetTrigger("SwordSwing");
+                //give pc a little bump forward
+                playerRigidbody.AddForce(transform.forward * bump);
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-                Debug.Log("resetting trigger");
+                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAA resetting trigger");
                 anim.SetTrigger("SwordSwing");
+
             }
         }
 
