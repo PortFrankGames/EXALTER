@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7688941838186581952}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.70535535, z: 0, w: 0.7088539}
   m_LocalPosition: {x: 62.8, y: 1.99, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
@@ -124,11 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0f1ee31acbc5547add42d9e0c3e40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHoming: 0
   target: {fileID: 0}
-  targetPos: {x: 0, y: 0, z: 0}
-  moveDirection: {x: 0, y: 0, z: 0}
-  rb: {fileID: 0}
-  setInitialMovement: 0
+  targetPos: {x: 111.84341, y: 1.0239195, z: -12.543563}
+  moveDirection: {x: 49.99679, y: 0.50958395, z: 0.24737082}
+  rb: {fileID: 7688941838186581958}
   bulletSpeed: 50
   maxReflectionsCount: 3
   maxStepDistance: 200

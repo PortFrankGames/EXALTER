@@ -5,14 +5,18 @@ using UnityEditor;
 
 public class bulletController : MonoBehaviour
 {
+    //use these when making homing bullets
+    public bool isHoming = false;
     public GameObject target;
+
+    //bread and butter for making the bullet work
     public Vector3 targetPos;
     public Vector3 moveDirection;
     public Ray bulletPath;
     public Rigidbody rb;
-    public bool setInitialMovement;
     public int bulletSpeed;
 
+    //use these to have bullets reflect off surfaces
     public int maxReflectionsCount;
     public float maxStepDistance = 200;
 
@@ -25,43 +29,44 @@ public class bulletController : MonoBehaviour
         //target.GetComponent<playerController>().OnPlayerHit();
     }
 
+    //private void Start()
+    //{
+    //    target = GameObject.FindWithTag("Player");
+    //    targetPos = target.transform.position;
+
+    //    if (isHoming == true)
+    //    {
+    //        targetPos = target.transform.position;
+    //    }
+
+    //    //give the bullet an initial movement towards the targets position
+    //    moveDirection = (targetPos - this.transform.position).normalized * bulletSpeed;
+    //    rb.velocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
+    //    //rb.AddForce(new Vector3(moveDirection.x, moveDirection.y, moveDirection.z));
+
+    //    //set bullet to look at pc's initial position
+    //    targetPos.y = this.transform.position.y;
+    //    transform.LookAt(targetPos);
+    //}
+
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        target = GameObject.FindWithTag("Player");
-
-        //give the bullet an initial movement towards the pcs position
-        rb = GetComponent<Rigidbody>();
-        moveDirection = (target.transform.position - this.transform.position).normalized * bulletSpeed;
-        rb.velocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
-
-        //set bullet to look at pc's initial position
-        targetPos = target.transform.position;
-        targetPos.y = this.transform.position.y;
-        transform.LookAt(targetPos);
+        rb = this.gameObject.GetComponent<Rigidbody>();
     }
 
     public void ShootTowards (Vector3 targetPos)
     {
+        Debug.Log("shooting towards" + targetPos);
+
         //move the bullet towards the intended point
         moveDirection = (targetPos - this.transform.position).normalized * bulletSpeed;
         rb.velocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
+        //rb.AddForce(new Vector3(moveDirection.x, moveDirection.y, moveDirection.z));
 
         //set bullet to look at the point
         targetPos.y = this.transform.position.y;
         transform.LookAt(targetPos);
     }
-
-    //void OnDrawGizmos()
-    //{
-    //    Handles.color = Color.red;
-    //    Handles.ArrowHandleCap(0, this.transform.position + this.transform.forward * 0.25f, this.transform.rotation, 0.5f, EventType.Repaint);
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(this.transform.position, 0.25f);
-
-    //    //this might be an issue
-    //    DrawPredictedReflectionPattern(this.transform.position + this.transform.forward * 0.75f, this.transform.forward, maxReflectionsCount);
-    //}
 
     //calculate bullet's eventual reflection
     public void DrawPredictedReflectionPattern(Vector3 position, Vector3 direction, int reflectionsRemaining)

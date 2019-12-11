@@ -24,11 +24,6 @@ public class AIController : MonoBehaviour
     public float stoppingDistance;
     public float retreatDistance;
 
-    //private void Awake()
-    //{
-    //    playerTransform = GameObject.FindWithTag("Player").transform;
-    //}
-
     private void Update()
     {
         playerTransform = GameObject.FindWithTag("Player").transform;
@@ -36,7 +31,6 @@ public class AIController : MonoBehaviour
         playerPos = playerTransform.position;
         playerPos.y = this.transform.position.y;
         transform.LookAt(playerPos);
-
 
         if (Vector3.Distance(this.transform.position, playerTransform.position) > stoppingDistance)
         {
@@ -73,6 +67,7 @@ public class AIController : MonoBehaviour
     }
     void Shoot()
     {
-        Instantiate(bullet, this.transform.position, Quaternion.identity);
+        GameObject bulletInstance = Instantiate(bullet, transform.Find("Muzzle").position, Quaternion.identity) as GameObject;
+        bulletInstance.GetComponent<bulletController>().ShootTowards(playerPos);
     }
 }

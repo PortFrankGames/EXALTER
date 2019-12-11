@@ -30,7 +30,7 @@ public class ReflectSword : MonoBehaviour
         playerRigidbody = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         anim.ResetTrigger("SwordSwing");
-        bump = 750.0f;
+        bump = 1000.0f;
     }
 
     private void Update()
