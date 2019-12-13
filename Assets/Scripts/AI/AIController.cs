@@ -65,9 +65,11 @@ public class AIController : MonoBehaviour
             }
         }
     }
+
     void Shoot()
     {
-        GameObject bulletInstance = Instantiate(bullet, transform.Find("Muzzle").position, Quaternion.identity) as GameObject;
-        bulletInstance.GetComponent<bulletController>().ShootTowards(playerPos);
+        Debug.Log("enemy shooting");
+        GameObject enemyBulletInstance = Instantiate(bullet, transform.Find("Muzzle").position, Quaternion.identity) as GameObject;
+        enemyBulletInstance.GetComponent<bulletController>().ShootTowards(playerPos);
     }
 }

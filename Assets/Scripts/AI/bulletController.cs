@@ -20,15 +20,6 @@ public class bulletController : MonoBehaviour
     public int maxReflectionsCount;
     public float maxStepDistance = 200;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "ReflectableSurface")
-        {
-            ShootTowards(targetPos);
-        }
-        //target.GetComponent<playerController>().OnPlayerHit();
-    }
-
     //private void Start()
     //{
     //    target = GameObject.FindWithTag("Player");
